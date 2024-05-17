@@ -67,8 +67,6 @@ html.listItems.appendChild(container)
 };
 
 
-
-
 const genreChoices = () => {
     const genreHtml = document.createDocumentFragment()
     const firstGenreElement = document.createElement('option')
@@ -106,7 +104,6 @@ html.searchAuthors.appendChild(authorsHtml)
 }
 
 
-
 const systemPreferredTheme = () => {
     if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
     html.themeSettings.value = 'night'
@@ -118,7 +115,6 @@ const systemPreferredTheme = () => {
     document.documentElement.style.setProperty('--color-light', '255, 255, 255');
 }
 }
-
 
 
 const showMoreButton = () => {
