@@ -32,10 +32,7 @@ const collectedHTML = () => {
 }
 const html = collectedHTML();
 
-const initializeDocument = () => {
-    const starting = document.createDocumentFragment()
-
-    for (const { author, id, image, title } of matches.slice(0, BOOKS_PER_PAGE)) {
+const createBookPreview = ({author, id, image, title}) => {
     const element = document.createElement('button')
     element.classList = 'preview'
     element.setAttribute('data-preview', id)
@@ -51,12 +48,24 @@ const initializeDocument = () => {
             <div class="preview__author">${authors[author]}</div>
         </div>
     `
+    return element;
+}
 
-    starting.appendChild(element)
+const starting = document.createDocumentFragment()
+
+const initializeDocument = (object, container) => {
+    
+
+    for (const { author, id, image, title } of object.slice(0, BOOKS_PER_PAGE)) {
+        const bookPreview = createBookPreview({author, id, image, title});
+    
+
+    container.appendChild(bookPreview)
 };
 
-html.listItems.appendChild(starting)
+html.listItems.appendChild(container)
 };
+
 
 
 
@@ -294,7 +303,7 @@ const addEventListeners = () => {
 
 
 const runApp = () => {
-    initializeDocument ();
+    initializeDocument (books, starting);
     genreChoices();
     authorChoices();
     systemPreferredTheme();
