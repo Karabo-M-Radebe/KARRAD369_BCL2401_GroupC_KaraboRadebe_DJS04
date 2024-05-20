@@ -3,7 +3,7 @@ class booksPreview extends HTMLElement {
         super(); //must call this to initiate parent class
 
         const shadowRoot = this.attachShadow (init: {
-            mode: 'closed'
+            mode: 'open'
         })
 
         this.shadowRoot.innerHTML = `
