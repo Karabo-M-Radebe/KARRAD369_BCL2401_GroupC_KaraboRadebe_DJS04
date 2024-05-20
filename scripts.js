@@ -1,3 +1,8 @@
+import { books, authors, genres, BOOKS_PER_PAGE } from './data.js'
+
+let page = 1;
+let matches = books
+
 class booksPreview extends HTMLElement {
     constructor() {
         super(); //must call this to initiate parent class
@@ -84,11 +89,6 @@ class booksPreview extends HTMLElement {
 
 customElements.define('books-preview', booksPreview)  
 
-import { books, authors, genres, BOOKS_PER_PAGE } from './data.js'
-
-let page = 1;
-let matches = books
-
 const collectedHTML = () => {
     return{
         listItems: document.querySelector('[data-list-items]'),
@@ -119,21 +119,12 @@ const collectedHTML = () => {
 const html = collectedHTML();
 
 const createBookPreview = ({author, id, image, title}) => {
-    const element = document.createElement('button')
-    element.classList = 'preview'
-    element.setAttribute('data-preview', id)
-
-    element.innerHTML = `
-        <img
-            class="preview__image"
-            src="${image}"
-        />
-        
-        <div class="preview__info">
-            <h3 class="preview__title">${title}</h3>
-            <div class="preview__author">${authors[author]}</div>
-        </div>
-    `
+    const element = document.createElement('books-preview')
+    element.dataset.id = id;
+    element.dataset.author = author;
+    element.dataset.image = image;
+    element.dataset.title = title;
+    
     return element;
 }
 
