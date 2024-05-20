@@ -1,10 +1,12 @@
 class booksPreview extends HTMLElement {
     constructor() {
         super(); //must call this to initiate parent class
-
-        const shadowRoot = this.attachShadow ({
-            mode: 'open'
-        })
+        this.attachShadow ({mode: 'open'})
+    }
+    
+        connectedCallback() {
+            const {author, id, image, title} = this.dataset;
+        
 
         this.shadowRoot.innerHTML = `
         <button class="preview" data-preview="${id}">
